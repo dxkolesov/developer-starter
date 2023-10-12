@@ -19,7 +19,7 @@ const context = await esbuild.context({
   bundle: true,
   entryPoints: ENTRY_POINTS,
   outdir: BUILD_DIRECTORY,
-  minify: PRODUCTION,
+  // minify: PRODUCTION,
   sourcemap: !PRODUCTION,
   target: PRODUCTION ? 'es2019' : 'esnext',
   inject: LIVE_RELOAD ? ['./bin/live-reload.js'] : undefined,
@@ -32,9 +32,7 @@ const context = await esbuild.context({
 if (PRODUCTION) {
   await context.rebuild();
   context.dispose();
-}
-
-// Watch and serve files in dev
+} // Watch and serve files in dev
 else {
   await context.watch();
   await context
